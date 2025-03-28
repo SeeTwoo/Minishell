@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:51:37 by walter            #+#    #+#             */
-/*   Updated: 2025/03/28 12:26:20 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/03/28 13:17:19 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ struct s_token
 	t_token	*next;
 }
 
-enum
+enum token_types
 {
 	CMD,
 	IN,
@@ -34,4 +34,4 @@ enum
 	CLOS_PAR,
 	AND,
 	OR
-}
+};

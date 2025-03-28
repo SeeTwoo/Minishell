@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   singletons.c                                       :+:      :+:    :+:   */
+/*   lexemes_creators.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/23 18:23:42 by walter            #+#    #+#             */
-/*   Updated: 2025/03/23 18:25:57 by walter           ###   ########.fr       */
+/*   Created: 2025/03/28 00:20:10 by walter            #+#    #+#             */
+/*   Updated: 2025/03/28 01:40:24 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_scanner	*scanner(void)
+char	*separators(char **line, char c)
 {
-	static t_scanner	scanner;
+	size_t	len;
+	char	*dest;
 
-	return (&scanner);
+	len = 0;
+	while (*line == c)
+		len++;
+	*line += len;
+	dest = malloc(sizeof(char) * (len + 1));
+	if (!dest)
+		return (NULL);
+	dest[len] = '\0';
+	while (--len >= 0)
+		dest[len] = c;
+	return (dest);
 }

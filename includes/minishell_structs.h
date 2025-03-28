@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:51:37 by walter            #+#    #+#             */
-/*   Updated: 2025/03/26 13:49:42 by walter           ###   ########.fr       */
+/*   Updated: 2025/03/28 12:26:20 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,12 @@
 # define MINISHELL_STRUCTS_H
 
 typedef struct s_token		t_token;
-typedef struct s_scanner	t_scanner;
 
 struct s_token
 {
 	char	*lexeme;
 	int		type;
 	t_token	*next;
-}
-
-struct s_scanner
-{
-	char	*start;
-	char	*current;
 }
 
 enum

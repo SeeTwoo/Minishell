@@ -6,60 +6,47 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:18:22 by walter            #+#    #+#             */
-/*   Updated: 2025/03/26 14:06:58 by walter           ###   ########.fr       */
+/*   Updated: 2025/03/30 20:02:11 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "minishell_lookup.h"
 
-t_token	*and(t_token token, char **line)
+void	skip_whitespace(char **line)
 {
-	if (strspn(scanner->current, "&") != 2)
-		ft_error_msg(
+	while (ft_isspace(**line))
+		(*line)++;
 }
 
-t_token	*redirections(t_token token, char **line)
-{
-	
-}
-
-t_token	*
-
-t_token	*pipe(t_token, char **line)
-{
-
-}
-
-t_token	*commands(t_token token, char **line)
-{
-	char	*lexeme;
-
-	lexeme = no_quotes_dup(*line);
-	if (!lexeme)
-}
-
-t_token	*scan_token(char **line)
+t_token	*scan_token(char **line, int *err)
 {
 	t_token	*token;
 
 	token = malloc(sizeof(token));
 	if (!token)
 		return (NULL);
-	*line += ft_strspn(*line, " \t");
+	skip_whitespaces(line);
+	if (!(**line))
+	{
+		token.lexeme = NULL;
+	}
+	lexeme = func_ptr(**line);
 }
 
 t_token	*lexer(char *line)
 {
 	t_token		*head;
 	t_token		*tail;
+	int			error;
 
-	head = scan_token(&line);
+	head = scan_token(&line, &err);
 	tail = head;
 	if (!head)
 		return (free_tokens(head));
 	while (*scanner.current)
 	{
-		tail->next = scan_token(&line);
+		tail->next = scan_token(&line, &err);
 		tail = tail->next;
 		if (!tail)
 			return (free_tokens(head));

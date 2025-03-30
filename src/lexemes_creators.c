@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 00:20:10 by walter            #+#    #+#             */
-/*   Updated: 2025/03/28 12:59:37 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/03/30 20:02:14 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,8 @@ char	*separators(char **line, char *c)
 
 char	*parenthesis(char **line, char *c)
 {
-	char	*dest;
+	char	dest[2];
 
-	dest = malloc(sizeof(char) * 2);
-	if (!dest)
-		return (NULL);
 	dest[0] = c;
 	dest[1] = '\0';
 	(*line)++;

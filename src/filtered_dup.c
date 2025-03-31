@@ -6,27 +6,39 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:15:39 by walter            #+#    #+#             */
-/*   Updated: 2025/03/28 13:05:40 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/03/31 23:59:00 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static size_t	filtered_len(char *s, char *quote)
+static size_t	ft_strcspn_c(char const *s, char c)
+{
+	char	*end;
+
+	end = ft_strchr(s, c);
+	if (!end)
+		return (ft_strlen(s));
+	return (end - s);
+}
+
+static size_t	filtered_len(char const *s)
 {
 	size_t	i;
 	size_t	offset;
+	char	quote;
 
 	i = 0;
 	while (*s  && !ft_isspace(*s))
 	{
-		if (*s == *quote)
+		if (*s == '\'' || *s == '\"')
 		{
+			quote = *s;
 			s++;
-			offset = ft_strcspn(s, quote);
+			offset = ft_strcspn_c(s, quote);
 			s += offset;
 			i += offset;
-			if (*s == *quote)
+			if (*s == quote)
 				s++;
 		}
 		else
@@ -38,19 +50,25 @@ static size_t	filtered_len(char *s, char *quote)
 	return (i);
 }
 
-static void	filtered_cpy(char **s, char *dest, char *quote, size_t *i)
+static void	filtered_cpy(char **s, char *dest, size_t *i, int *err)
 {
 	size_t	offset;
+	char	quote;
 
-	if (**s == *quote)
+	if (**s == '\'' || **s == '\"')
 	{
-		*s += 1;
-		offset = ft_strcspn(*s, quote);
+		(*s)++;
+		offset = ft_strcspn_c(*s, quote);
 		ft_memcpy(&dest[*i], *s, offset);
 		*s += offset;
 		*i += offset;
-		if (**s == *quote)
+		if (**s == quote)
 			*s += 1;
+		else
+		{
+			*err = 1;
+			ft_error_msg("Unclosed quote", NULL);
+		}
 	}
 	else
 	{
@@ -60,7 +78,7 @@ static void	filtered_cpy(char **s, char *dest, char *quote, size_t *i)
 	}
 }
 
-char	*filtered_dup(char **line, char *quote)
+char	*filtered_dup(char **line)
 {
 	char	*dest;
 	size_t	i;
@@ -70,7 +88,7 @@ char	*filtered_dup(char **line, char *quote)
 		return (NULL);
 	i = 0;
 	while (*s && !ft_isspace(*s))
-		filtered_cpy(line, dest, quote, &i);
+		filtered_cpy(line, dest, &i);
 	dest[i] = '\0';
 	return (dest);
 }

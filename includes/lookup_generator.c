@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 13:06:09 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/03/28 14:36:22 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/03/31 19:27:55 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	write_func_ptrs(int fd)
 	c = 0;
 	while (c <= 127)
 	{
-		if (isspace((char)c))
-			dprintf(fd, "\tskip_whitespaces");
+		if (c == 0)
+			dprintf(fd, "\tend_of_line");
 		else if (strchr(SEPARATORS, (char)c))
 			dprintf(fd, "\tseparators");
 		else if ((char)c == '(' || (char)c == ')')

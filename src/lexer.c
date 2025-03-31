@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:18:22 by walter            #+#    #+#             */
-/*   Updated: 2025/03/30 20:02:11 by walter           ###   ########.fr       */
+/*   Updated: 2025/03/31 23:50:08 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ t_token	*scan_token(char **line, int *err)
 	token = malloc(sizeof(token));
 	if (!token)
 		return (NULL);
-	skip_whitespaces(line);
-	if (!(**line))
+	skip_whitespace(line);
+	if (!(token_creators(**line)(token, line, err)))
 	{
-		token.lexeme = NULL;
+		free(token)
+		return (NULL);
 	}
-	lexeme = func_ptr(**line);
+	return (token);
 }
 
 t_token	*lexer(char *line)
@@ -51,5 +52,7 @@ t_token	*lexer(char *line)
 		if (!tail)
 			return (free_tokens(head));
 	}
+	if (error == 1)
+		return (free_tokens(head));
 	return (head);
 }

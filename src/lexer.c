@@ -6,12 +6,11 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:18:22 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 17:27:10 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/01 18:52:19 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "minishell_lookup.h"
 
 void	skip_whitespace(char **line)
 {
@@ -22,15 +21,20 @@ void	skip_whitespace(char **line)
 t_token	*scan_token(char **line, int *err)
 {
 	t_token		*token;
-	func_ptr	func;
+	t_token		*temp;
 
 	token = malloc(sizeof(t_token));
 	if (!token)
 		return (NULL);
 	token->next = NULL;
 	skip_whitespace(line);
-	func = TOKEN_FILLERS[(unsigned char)**line];
-	if (!func(token, line, err))
+	if (**line == '(' || **line == ')')
+		temp = parenthesis_token(token, line, err);
+	else if (ft_strchr(SEPARATORS, **line))
+		temp = separator_token(token, line, err);
+	else
+		temp = commands_token(token, line, err);
+	if (!temp)
 	{
 		free(token);
 		return (NULL);

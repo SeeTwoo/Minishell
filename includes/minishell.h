@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:49:32 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 14:52:26 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/01 18:49:05 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+# ifndef SEPARATORS
+#  define SEPARATORS "<>|&"
+# endif
 
 t_token	*free_tokens(t_token *tokens);
 

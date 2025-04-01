@@ -6,13 +6,11 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:15:39 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 16:09:13 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/01 18:51:29 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-#define SEP "<>|&"
 
 static size_t	ft_strcspn_c(char const *s, char c)
 {
@@ -31,7 +29,7 @@ static size_t	filtered_len(char const *s)
 	char	quote;
 
 	i = 0;
-	while (*s  && !ft_isspace(*s) && !ft_strchr(SEP, *s))
+	while (*s  && !ft_isspace(*s) && !ft_strchr(SEPARATORS, *s))
 	{
 		if (*s == '\'' || *s == '\"')
 		{
@@ -90,7 +88,7 @@ char	*filtered_dup(char **line, int *err)
 	if (!dest)
 		return (NULL);
 	i = 0;
-	while (**line && !ft_isspace(**line) && !ft_strchr(SEP, **line))
+	while (**line && !ft_isspace(**line) && !ft_strchr(SEPARATORS, **line))
 		filtered_cpy(line, dest, &i, err);
 	dest[i] = '\0';
 	return (dest);

@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:51:37 by walter            #+#    #+#             */
-/*   Updated: 2025/03/28 13:17:19 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/01 02:34:18 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ struct s_token
 	char	*lexeme;
 	int		type;
 	t_token	*next;
-}
+};
 
 enum token_types
 {
@@ -35,3 +35,5 @@ enum token_types
 	AND,
 	OR
 };
+
+#endif

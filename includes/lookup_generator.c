@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 13:06:09 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/03/31 19:27:55 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/01 02:29:47 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ void	write_func_ptrs(int fd)
 	while (c <= 127)
 	{
 		if (c == 0)
-			dprintf(fd, "\tend_of_line");
+			dprintf(fd, "\tend_of_line_token");
 		else if (strchr(SEPARATORS, (char)c))
-			dprintf(fd, "\tseparators");
+			dprintf(fd, "\tseparators_token");
 		else if ((char)c == '(' || (char)c == ')')
-			dprintf(fd, "\tparenthesis");
+			dprintf(fd, "\tparenthesis_token");
 		else if (strchr(ALNUMS, (char)c))
-			dprintf(fd, "\tfiltered_dup");
+			dprintf(fd, "\tcommands_token");
 		else
-			dprintf(fd, "\twrong_tok");
+			dprintf(fd, "\twrong_token");
 		if (c < 127)
 			dprintf(fd, ",\\\n");
 		else
@@ -46,9 +46,9 @@ void	write_func_ptrs(int fd)
 
 void	write_lookup(int fd)
 {
-	dprintf(fd, "typedef char *(*func_ptr)(char **, char *);\n\n");
-	dprintf(fd, "#ifndef FUNC_ARRAY\n");
-	dprintf(fd, "# define FUNC_ARRAY (func_ptr[128]){\n");
+	dprintf(fd, "typedef char *(*func_ptr)(char **, char *, int *);\n\n");
+	dprintf(fd, "#ifndef TOKEN_FILLERS\n");
+	dprintf(fd, "# define TOKEN_FILLERS (func_ptr[128]){\\\n");
 	write_func_ptrs(fd);
 	dprintf(fd, "}\n\n");
 	dprintf(fd, "#endif");

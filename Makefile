@@ -6,7 +6,11 @@ LIB_DIR = libft
 LIB_NAME = $(LIB_DIR)/libft.a
 
 SRC_DIR = src
-SRC_FILES =	main.c
+SRC_FILES =	filtered_dup.c \
+			lexemes_creators.c \
+			lexer.c \
+			main.c \
+			token_creators.c
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
 OBJ_DIR = obj

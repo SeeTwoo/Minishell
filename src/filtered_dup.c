@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:15:39 by walter            #+#    #+#             */
-/*   Updated: 2025/03/31 23:59:00 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/01 02:42:08 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	filtered_cpy(char **s, char *dest, size_t *i, int *err)
 
 	if (**s == '\'' || **s == '\"')
 	{
+		quote = **s;
 		(*s)++;
 		offset = ft_strcspn_c(*s, quote);
 		ft_memcpy(&dest[*i], *s, offset);
@@ -78,17 +79,17 @@ static void	filtered_cpy(char **s, char *dest, size_t *i, int *err)
 	}
 }
 
-char	*filtered_dup(char **line)
+char	*filtered_dup(char **line, int *err)
 {
 	char	*dest;
 	size_t	i;
 
-	dest = malloc(sizeof(char) * (filtered_len(*line, quote) + 1));
+	dest = malloc(sizeof(char) * (filtered_len(*line) + 1));
 	if (!dest)
 		return (NULL);
 	i = 0;
-	while (*s && !ft_isspace(*s))
-		filtered_cpy(line, dest, &i);
+	while (**line && !ft_isspace(**line))
+		filtered_cpy(line, dest, &i, err);
 	dest[i] = '\0';
 	return (dest);
 }

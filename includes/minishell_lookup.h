@@ -1,4 +1,4 @@
-typedef char *(*func_ptr)(char **, char *, int *);
+typedef char *(*func_ptr)(t_token *, char **, int *);
 
 #ifndef TOKEN_FILLERS
 # define TOKEN_FILLERS (func_ptr[128]){\

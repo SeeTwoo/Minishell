@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 00:20:10 by walter            #+#    #+#             */
-/*   Updated: 2025/03/31 16:27:34 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/01 02:44:38 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	hash_string(char const *s)
 	return ((s[0] * len + len) % 10);
 }
 
-char	*separators(char **line, char *c)
+char	*separators(char **line, char c)
 {
 	size_t	len;
 	char	*dest;
 
 	len = 0;
-	while (*line == c)
+	while (**line == c)
 		len++;
 	*line += len;
 	dest = malloc(sizeof(char) * (len + 1));
@@ -40,8 +40,11 @@ char	*separators(char **line, char *c)
 
 char	*parenthesis(char **line, char *c)
 {
-	char	dest[2];
+	char	*dest;
 
+	dest = malloc(sizeof(char) * 2);
+	if (!dest)
+		return (NULL);
 	dest[0] = *c;
 	dest[1] = '\0';
 	(*line)++;

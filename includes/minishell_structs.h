@@ -6,14 +6,14 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:51:37 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 02:34:18 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/01 03:02:13 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_STRUCTS_H
 # define MINISHELL_STRUCTS_H
 
-typedef struct s_token		t_token;
+typedef struct s_token	t_token;
 
 struct s_token
 {
@@ -22,7 +22,7 @@ struct s_token
 	t_token	*next;
 };
 
-enum token_types
+enum e_tok_types
 {
 	CMD,
 	IN,
@@ -30,10 +30,11 @@ enum token_types
 	TRUNC,
 	APPEND,
 	PIPE,
-	OPEN_PAR,
-	CLOS_PAR,
+	OPEN_PAREN,
+	CLOSE_PAREN,
 	AND,
-	OR
+	OR,
+	END_OF_LINE
 };
 
 #endif

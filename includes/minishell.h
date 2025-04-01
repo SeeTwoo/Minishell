@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:49:32 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 02:55:14 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/01 03:12:04 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,9 @@ t_token *wrong_token(t_token *token, char **line, int *err);
 t_token *commands_token(t_token *token, char **line, int *err);
 t_token *separators_token(t_token *token, char **line, int *err);
 t_token *parenthesis_token(t_token *token, char **line, int *err);
+
+char	*filtered_dup(char **line, int *err);
+char	*separators(char **line, char c);
+int		hash_string(char const *s);
 
 #endif

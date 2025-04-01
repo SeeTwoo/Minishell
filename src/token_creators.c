@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:23:49 by walter            #+#    #+#             */
-/*   Updated: 2025/03/31 23:59:04 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/01 03:10:42 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 t_token	*end_of_line(t_token *token, char **line, int *err)
 {
+	(void)line;
+	(void)err;
 	token->lexeme = NULL;
 	token->type = END_OF_LINE;
 	return (token);
@@ -37,7 +39,7 @@ t_token *separator_token(t_token *token, char **line, int *err)
 	return (token);
 }
 
-t_token	*parenthesis(t_token *token, char **line, int *err)
+t_token	*parenthesis_token(t_token *token, char **line, int *err)
 {
 	token->lexeme = parenthesis(line, **line);
 	if (!token->lexeme)
@@ -46,21 +48,22 @@ t_token	*parenthesis(t_token *token, char **line, int *err)
 		return (NULL);
 	}
 	token->type = OPEN_PAREN;
+	*err = 0;
 	if (token->lexeme[0] == ')')
 		token->type = CLOSE_PAREN;
 	return (token);
 }
 
-token *commands(t_token *token, char **line, int *err)
+t_token *commands_token(t_token *token, char **line, int *err)
 {
-	token->lexeme = filtered_dup(line);
+	token->lexeme = filtered_dup(line, err);
 	if (!token->lexeme)
 		return (NULL);
 	token->type = CMD;
 	return (token);
 }
 
-token *wrong_token(t_token *token, char **line, int *err)
+t_token *wrong_token(t_token *token, char **line, int *err)
 {
 	(*line)++;
 	*err = 1;

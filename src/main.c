@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 19:06:03 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 15:27:07 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:16:54 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 void	print_tokens(t_token *tokens)
 {
+	char	string_types[12][20] = {"or", "in", "hd", "trunc", "cmd", "pipe", 
+	"append", "eol", "and", "open paren", "close paren", "wrong token"
+	};
+
 	while (tokens)
 	{
 		if (tokens->lexeme)
-			printf("lexeme is: %s\n", tokens->lexeme);
+			printf("lexeme is: %s\t\t type is: %s\n", tokens->lexeme, string_types[tokens->type]);
 		tokens = tokens->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:23:49 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 16:00:43 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:20:54 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_token	*end_of_line_token(t_token *token, char **line, int *err)
 
 t_token *separator_token(t_token *token, char **line, int *err)
 {
+	size_t	len;
 //	printf("separator_token\n");
 	token->lexeme = separators(line, **line);
 	if (!token->lexeme)
@@ -31,7 +32,8 @@ t_token *separator_token(t_token *token, char **line, int *err)
 		ft_error_msg("Memory allocation failed", NULL);
 		return (NULL);
 	}
-	if (ft_strlen(token->lexeme) > 2)
+	len = ft_strlen(token->lexeme);
+	if (len > 2 || (len == 1 && token->lexeme[0] == '&'))
 	{
 		ft_error_msg("Syntax error in the line", token->lexeme);
 		*err = 1;

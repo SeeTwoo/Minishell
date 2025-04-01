@@ -40,7 +40,7 @@ typedef t_token *(*func_ptr)(t_token *, char **, int *);
 	wrong_token,\
 	wrong_token,\
 	wrong_token,\
-	separators_token,\
+	separator_token,\
 	commands_token,\
 	parenthesis_token,\
 	parenthesis_token,\
@@ -62,41 +62,9 @@ typedef t_token *(*func_ptr)(t_token *, char **, int *);
 	commands_token,\
 	wrong_token,\
 	wrong_token,\
-	separators_token,\
+	separator_token,\
 	wrong_token,\
-	separators_token,\
-	wrong_token,\
-	wrong_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	commands_token,\
-	wrong_token,\
-	wrong_token,\
-	wrong_token,\
-	wrong_token,\
+	separator_token,\
 	wrong_token,\
 	wrong_token,\
 	commands_token,\
@@ -126,7 +94,39 @@ typedef t_token *(*func_ptr)(t_token *, char **, int *);
 	commands_token,\
 	commands_token,\
 	wrong_token,\
-	separators_token,\
+	wrong_token,\
+	wrong_token,\
+	wrong_token,\
+	wrong_token,\
+	wrong_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	commands_token,\
+	wrong_token,\
+	separator_token,\
 	wrong_token,\
 	wrong_token,\
 	wrong_token\

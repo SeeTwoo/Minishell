@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 13:06:09 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/04/01 02:58:36 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/01 03:29:48 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	write_func_ptrs(int fd)
 		if (c == 0)
 			dprintf(fd, "\tend_of_line_token");
 		else if (strchr(SEPARATORS, (char)c))
-			dprintf(fd, "\tseparators_token");
+			dprintf(fd, "\tseparator_token");
 		else if ((char)c == '(' || (char)c == ')')
 			dprintf(fd, "\tparenthesis_token");
 		else if (strchr(ALNUMS, (char)c))

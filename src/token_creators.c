@@ -6,13 +6,13 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:23:49 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 03:10:42 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/01 03:27:49 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_token	*end_of_line(t_token *token, char **line, int *err)
+t_token	*end_of_line_token(t_token *token, char **line, int *err)
 {
 	(void)line;
 	(void)err;

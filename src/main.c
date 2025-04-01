@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 19:06:03 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 02:37:14 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/01 03:32:09 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ int	main(int ac, char **av)
 	if (!tokens)
 		return (0);
 	print_tokens(tokens);
+	free_tokens(tokens);
 	return (0);
 }

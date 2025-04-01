@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 00:20:10 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 15:25:16 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/01 15:51:09 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char	*separators(char **line, char c)
 	temp = *line;
 	while (temp[len] && temp[len] == c)
 		len++;
-	printf("hello\n");									//rm later
 	*line += len;
 	dest = malloc(sizeof(char) * (len + 1));
 	if (!dest)

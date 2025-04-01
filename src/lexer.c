@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:18:22 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 15:59:45 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:27:10 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ t_token	*lexer(char *line)
 	t_token		*tail;
 	int			error;
 
+	head = NULL;
+	tail = NULL;
+	error = 0;
 	head = scan_token(&line, &error);
 	tail = head;
 	if (!head)

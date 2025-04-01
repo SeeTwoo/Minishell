@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 13:06:09 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/04/01 02:48:23 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/01 02:58:36 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	write_func_ptrs(int fd)
 
 void	write_lookup(int fd)
 {
-	dprintf(fd, "typedef char *(*func_ptr)(t_token *, char **, int *);\n\n");
+	dprintf(fd, "typedef t_token *(*func_ptr)(t_token *, char **, int *);\n\n");
 	dprintf(fd, "#ifndef TOKEN_FILLERS\n");
 	dprintf(fd, "# define TOKEN_FILLERS (func_ptr[128]){\\\n");
 	write_func_ptrs(fd);

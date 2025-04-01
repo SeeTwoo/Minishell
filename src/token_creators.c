@@ -6,21 +6,11 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:23:49 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 17:20:54 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/01 19:25:09 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-t_token	*end_of_line_token(t_token *token, char **line, int *err)
-{
-//	printf("end of line token\n");
-	(void)line;
-	(void)err;
-	token->lexeme = NULL;
-	token->type = END_OF_LINE;
-	return (token);
-}
 
 t_token *separator_token(t_token *token, char **line, int *err)
 {
@@ -66,16 +56,5 @@ t_token *commands_token(t_token *token, char **line, int *err)
 	if (!token->lexeme)
 		return (NULL);
 	token->type = CMD;
-	return (token);
-}
-
-t_token *wrong_token(t_token *token, char **line, int *err)
-{
-//	printf("wrong token\n");
-	(*line)++;
-	*err = 1;
-	token->lexeme = NULL;
-	token->type = 13;
-	ft_error_msg("Wrong character in command line", NULL);
 	return (token);
 }

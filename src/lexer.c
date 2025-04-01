@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:18:22 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 02:53:01 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/01 03:55:39 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_token	*scan_token(char **line, int *err)
 	t_token		*token;
 	func_ptr	func;
 
-	token = malloc(sizeof(token));
+	token = malloc(sizeof(t_token));
 	if (!token)
 		return (NULL);
 	skip_whitespace(line);

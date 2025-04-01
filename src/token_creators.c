@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:23:49 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 15:50:21 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/01 16:00:43 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_token	*end_of_line_token(t_token *token, char **line, int *err)
 {
-	printf("end of line token\n");
+//	printf("end of line token\n");
 	(void)line;
 	(void)err;
 	token->lexeme = NULL;
@@ -24,7 +24,7 @@ t_token	*end_of_line_token(t_token *token, char **line, int *err)
 
 t_token *separator_token(t_token *token, char **line, int *err)
 {
-	printf("separator_token\n");
+//	printf("separator_token\n");
 	token->lexeme = separators(line, **line);
 	if (!token->lexeme)
 	{
@@ -43,7 +43,7 @@ t_token *separator_token(t_token *token, char **line, int *err)
 
 t_token	*parenthesis_token(t_token *token, char **line, int *err)
 {
-	printf("parenthesis token\n");
+//	printf("parenthesis token\n");
 	token->lexeme = parenthesis(line, **line);
 	if (!token->lexeme)
 	{
@@ -59,7 +59,7 @@ t_token	*parenthesis_token(t_token *token, char **line, int *err)
 
 t_token *commands_token(t_token *token, char **line, int *err)
 {
-	printf("commands_token\n");
+//	printf("commands_token\n");
 	token->lexeme = filtered_dup(line, err);
 	if (!token->lexeme)
 		return (NULL);
@@ -69,7 +69,7 @@ t_token *commands_token(t_token *token, char **line, int *err)
 
 t_token *wrong_token(t_token *token, char **line, int *err)
 {
-	printf("wrong token\n");
+//	printf("wrong token\n");
 	(*line)++;
 	*err = 1;
 	token->lexeme = NULL;

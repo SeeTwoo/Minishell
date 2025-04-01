@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:49:32 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 03:27:46 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/01 14:52:26 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 t_token	*free_tokens(t_token *tokens);
 

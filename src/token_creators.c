@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:23:49 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 03:27:49 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/01 15:30:07 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ t_token *wrong_token(t_token *token, char **line, int *err)
 {
 	(*line)++;
 	*err = 1;
+	token->lexeme = NULL;
+	token->type = 13;
 	ft_error_msg("Wrong character in command line", NULL);
 	return (token);
 }

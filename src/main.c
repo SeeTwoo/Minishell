@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 19:06:03 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 03:32:09 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/01 15:27:07 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	print_tokens(t_token *tokens)
 {
 	while (tokens)
 	{
-		printf("lexeme is: %s\n", tokens->lexeme);
+		if (tokens->lexeme)
+			printf("lexeme is: %s\n", tokens->lexeme);
 		tokens = tokens->next;
 	}
 }
@@ -35,16 +36,24 @@ t_token	*free_tokens(t_token *tokens)
 	return (NULL);
 }
 
-int	main(int ac, char **av)
+int	main(void)
 {
 	t_token	*tokens;
+	char	*line;
+	char	*current;
 
-	if (ac != 2)
-		return (0);
-	tokens = lexer(av[1]);
+	line = readline("\e[35m\e[1mMinishell> \e[0m");
+	current = line;
+	if (!line)
+		return (1);
+	tokens = lexer(current);
 	if (!tokens)
-		return (0);
+	{
+		free(line);
+		return (1);
+	}
 	print_tokens(tokens);
+	free(line);
 	free_tokens(tokens);
 	return (0);
 }

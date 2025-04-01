@@ -30,7 +30,7 @@ $(LIB_NAME):
 	$(MAKE) -C $(LIB_DIR)
 
 $(NAME): $(OBJ) $(LIB_NAME)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -lreadline -o $@ $^
 
 debug: fclean
 	$(MAKE) -C $(LIB_DIR) debug

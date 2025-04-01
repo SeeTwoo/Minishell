@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:18:22 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 02:47:37 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/01 02:53:01 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_token	*scan_token(char **line, int *err)
 	func = TOKEN_FILLERS[(unsigned char)**line];
 	if (!func(token, line, err))
 	{
-		free(token)
+		free(token);
 		return (NULL);
 	}
 	return (token);
@@ -47,7 +47,7 @@ t_token	*lexer(char *line)
 	tail = head;
 	if (!head)
 		return (free_tokens(head));
-	while (**line)
+	while (*line)
 	{
 		tail->next = scan_token(&line, &error);
 		tail = tail->next;

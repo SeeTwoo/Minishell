@@ -6,11 +6,11 @@ LIB_DIR = libft
 LIB_NAME = $(LIB_DIR)/libft.a
 
 SRC_DIR = src
-SRC_FILES =	filtered_dup.c \
-			lexemes_creators.c \
+SRC_FILES =	lexemes_creators.c \
 			lexer.c \
 			main.c \
-			token_creators.c
+			token_creators.c \
+			words.c
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
 OBJ_DIR = obj
@@ -30,7 +30,7 @@ $(LIB_NAME):
 	$(MAKE) -C $(LIB_DIR)
 
 $(NAME): $(OBJ) $(LIB_NAME)
-	$(CC) $(CFLAGS) -lreadline -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ -lreadline
 
 debug: fclean
 	$(MAKE) -C $(LIB_DIR) debug

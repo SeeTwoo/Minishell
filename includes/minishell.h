@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:49:32 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 18:49:05 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/02 18:04:21 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-# ifndef SEPARATORS
-#  define SEPARATORS "<>|&"
+# ifndef SEP
+#  define SEP "<>|&"
 # endif
 
 t_token	*free_tokens(t_token *tokens);
@@ -31,11 +31,11 @@ t_token	*lexer(char *line);
 
 t_token	*end_of_line_token(t_token *token, char **line, int *err);
 t_token *wrong_token(t_token *token, char **line, int *err);
-t_token *commands_token(t_token *token, char **line, int *err);
+t_token *commands_token(t_token *token, char **line);
 t_token *separator_token(t_token *token, char **line, int *err);
 t_token *parenthesis_token(t_token *token, char **line, int *err);
 
-char	*filtered_dup(char **line, int *err);
+char	*words(char **line);
 char	*separators(char **line, char c);
 char	*parenthesis(char **line, char c);
 int		hash_string(char const *s);

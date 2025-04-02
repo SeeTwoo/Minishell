@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:23:49 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 19:25:09 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:58:39 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_token *separator_token(t_token *token, char **line, int *err)
 {
 	size_t	len;
-//	printf("separator_token\n");
+
 	token->lexeme = separators(line, **line);
 	if (!token->lexeme)
 	{
@@ -35,7 +35,6 @@ t_token *separator_token(t_token *token, char **line, int *err)
 
 t_token	*parenthesis_token(t_token *token, char **line, int *err)
 {
-//	printf("parenthesis token\n");
 	token->lexeme = parenthesis(line, **line);
 	if (!token->lexeme)
 	{
@@ -49,12 +48,11 @@ t_token	*parenthesis_token(t_token *token, char **line, int *err)
 	return (token);
 }
 
-t_token *commands_token(t_token *token, char **line, int *err)
+t_token *commands_token(t_token *token, char **line)
 {
-//	printf("commands_token\n");
-	token->lexeme = filtered_dup(line, err);
+	token->lexeme = words(line);
 	if (!token->lexeme)
 		return (NULL);
-	token->type = CMD;
+	token->type = WORD;
 	return (token);
 }

@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:18:22 by walter            #+#    #+#             */
-/*   Updated: 2025/04/01 19:26:58 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/02 18:05:48 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ t_token	*scan_token(char **line, int *err)
 	token->next = NULL;
 	if (**line == '(' || **line == ')')
 		temp = parenthesis_token(token, line, err);
-	else if (ft_strchr(SEPARATORS, **line))
+	else if (ft_strchr(SEP, **line))
 		temp = separator_token(token, line, err);
 	else
-		temp = commands_token(token, line, err);
+		temp = commands_token(token, line);
 	if (!temp)
 	{
 		free(token);

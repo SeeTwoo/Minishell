@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matching_v2.c                                      :+:      :+:    :+:   */
+/*   matching.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 10:45:03 by walter            #+#    #+#             */
-/*   Updated: 2025/04/03 12:07:52 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/03 14:25:36 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <dirent.h>
 
 int	end_match(char *wild, char *s)
 {
@@ -55,13 +56,38 @@ int	are_matching(char *wild, char *s)
 	return (1);
 }
 
+void	simple_globbing(char *wild)
+{
+	struct dirent	*entry;
+	DIR				*dir;
+	char			*wild_dup;
+
+	dir = opendir(".");
+	if (!dir)
+	{
+		printf("cannot open dir\n");
+		return ;
+	}
+	while (1)
+	{
+		entry = readdir(dir);
+		if (!entry)
+			break ;
+		wild_dup = strdup(wild);
+		if (!wild_dup)
+			break ;
+		if (are_matching(wild_dup, entry->d_name))
+			printf("%s  ", entry->d_name);
+		free(wild_dup);
+	}
+	printf("\n");
+	closedir(dir);
+}
+
 int	main(int ac, char **av)
 {
-	if (ac != 3)
+	if (ac != 2)
 		return (1);
-	if (are_matching(av[1], av[2]))
-		printf("\e[32mstring match !\e[0m\n");
-	else
-		printf("\e[31mstring do not match !\e[0m\n");
+	simple_globbing(av[1]);
 	return (0);
 }

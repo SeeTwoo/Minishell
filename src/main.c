@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 19:06:03 by walter            #+#    #+#             */
-/*   Updated: 2025/04/02 18:27:43 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/04 20:22:02 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	print_tokens(t_token *tokens)
 {
-	char	string_types[12][20] = {"or", "in", "hd", "trunc", "word", "pipe", 
-	"append", "close paren", "and", "open paren"
+	char	string_types[12][20] = {"or", "in", "hd", "trunc", "word", "pipe",
+		"append", "close paren", "and", "open paren"
 	};
 
 	while (tokens)
@@ -42,7 +42,7 @@ t_token	*free_tokens(t_token *tokens)
 
 int	main(void)
 {
-	t_token	*tokens;
+	t_token	**tokens;
 	char	*line;
 	char	*current;
 
@@ -56,8 +56,8 @@ int	main(void)
 		free(line);
 		return (1);
 	}
-	print_tokens(tokens);
-	free(line);
-	free_tokens(tokens);
+//	print_tokens(tokens);
+//	free(line);
+//	free_tokens(tokens);
 	return (0);
 }

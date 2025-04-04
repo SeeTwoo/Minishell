@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:18:22 by walter            #+#    #+#             */
-/*   Updated: 2025/04/02 18:05:48 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/04 20:25:08 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,37 @@ void	skip_whitespace(char **line)
 		(*line)++;
 }
 
-t_token	*scan_token(char **line, int *err)
+t_token	**list_to_arra(t_token *head)
+{
+	t_token	**array;
+	t_token	*temp;
+	size_t	i;
+
+	temp = head;
+	i = 0;
+	while (temp)
+	{
+		temp = temp->next;
+		i++;
+	}
+	array = malloc(sizeof(t_token *) * (i + 1));
+	if (!array)
+	{
+//		free_tokens(head);
+		return (NULL);
+	}
+	i = 0;
+	while (head)
+	{
+		array[i] = head;
+		head = head->next;
+		array[i]->next = NULL;
+		i++;
+	}
+	return (array);
+}
+
+t_token	*scan_token(char **line)
 {
 	t_token		*token;
 	t_token		*temp;
@@ -28,9 +58,9 @@ t_token	*scan_token(char **line, int *err)
 		return (NULL);
 	token->next = NULL;
 	if (**line == '(' || **line == ')')
-		temp = parenthesis_token(token, line, err);
+		temp = parenthesis_token(token, line);
 	else if (ft_strchr(SEP, **line))
-		temp = separator_token(token, line, err);
+		temp = separator_token(token, line);
 	else
 		temp = commands_token(token, line);
 	if (!temp)
@@ -41,30 +71,30 @@ t_token	*scan_token(char **line, int *err)
 	return (token);
 }
 
-t_token	*lexer(char *line)
+t_token	**lexer(char *line)
 {
 	t_token		*head;
 	t_token		*tail;
-	int			error;
 
-	head = NULL;
-	tail = NULL;
-	error = 0;
-	head = scan_token(&line, &error);
+	head = scan_token(&line);
 	tail = head;
 	if (!head)
-		return (free_tokens(head));
+	{
+		free_tokens(head);
+		return (NULL);
+	}
 	while (*line)
 	{
 		skip_whitespace(&line);
 		if (!(*line))
 			break ;
-		tail->next = scan_token(&line, &error);
+		tail->next = scan_token(&line);
 		tail = tail->next;
 		if (!tail)
-			return (free_tokens(head));
+		{
+			free_tokens(head);
+			return (NULL);
+		}
 	}
-	if (error == 1)
-		return (free_tokens(head));
-	return (head);
+	return (list_to_arra(head));
 }

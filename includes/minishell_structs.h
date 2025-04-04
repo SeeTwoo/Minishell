@@ -6,20 +6,40 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:51:37 by walter            #+#    #+#             */
-/*   Updated: 2025/04/02 13:48:02 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/04 20:16:48 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_STRUCTS_H
 # define MINISHELL_STRUCTS_H
 
-typedef struct s_token	t_token;
+typedef struct s_token		t_token;
+typedef struct s_redirect	t_redirect;
+typedef struct s_ast_node	t_ast_node;
 
 struct s_token
 {
 	char	*lexeme;
 	int		type;
 	t_token	*next;
+};
+
+struct s_ast_node
+{
+	t_ast_node	*left;
+	t_ast_node	*right;
+	int			visited;
+	int			type;
+	char		**args;
+	t_redirect	*redirect;
+};
+
+struct s_redirect
+{
+	int		in_type;
+	int		out_type;
+	char	*in_str;
+	char	*out_str;
 };
 
 enum e_tok_types

@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:18:22 by walter            #+#    #+#             */
-/*   Updated: 2025/04/04 20:25:08 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/04 23:24:29 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,19 @@ void	skip_whitespace(char **line)
 		(*line)++;
 }
 
+size_t	list_len(t_token *head)
+{
+	size_t	i;
+
+	i = 0;
+	while (head)
+	{
+		head = head->next;
+		i++;
+	}
+	return (i);
+}
+
 t_token	**list_to_arra(t_token *head)
 {
 	t_token	**array;
@@ -25,16 +38,10 @@ t_token	**list_to_arra(t_token *head)
 	size_t	i;
 
 	temp = head;
-	i = 0;
-	while (temp)
-	{
-		temp = temp->next;
-		i++;
-	}
-	array = malloc(sizeof(t_token *) * (i + 1));
+	array = malloc(sizeof(t_token *) * (list_len(head) + 1));
 	if (!array)
 	{
-//		free_tokens(head);
+		free_tokens(head);
 		return (NULL);
 	}
 	i = 0;

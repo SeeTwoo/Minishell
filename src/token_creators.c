@@ -6,11 +6,21 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:23:49 by walter            #+#    #+#             */
-/*   Updated: 2025/04/04 19:07:41 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/04 23:30:44 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	get_precedence(int type)
+{
+	if (type == AND || type == OR)
+		return (0);
+	else if (type == PIPE)
+		return (1);
+	else
+		return (2);
+}
 
 t_token	*separator_token(t_token *token, char **line)
 {
@@ -29,6 +39,7 @@ t_token	*separator_token(t_token *token, char **line)
 		return (token);
 	}
 	token->type = hash_string(token->lexeme);
+	token->precedence = get_precedence(token->type);
 	return (token);
 }
 
@@ -43,6 +54,7 @@ t_token	*parenthesis_token(t_token *token, char **line)
 	token->type = OPEN_PAREN;
 	if (token->lexeme[0] == ')')
 		token->type = CLOSE_PAREN;
+	token->precedence = get_precedence(token->type);
 	return (token);
 }
 
@@ -52,5 +64,6 @@ t_token	*commands_token(t_token *token, char **line)
 	if (!token->lexeme)
 		return (NULL);
 	token->type = WORD;
+	token->precedence = get_precedence(token->type);
 	return (token);
 }

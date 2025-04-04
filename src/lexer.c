@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:18:22 by walter            #+#    #+#             */
-/*   Updated: 2025/04/04 23:24:29 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/04 23:31:14 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,8 @@ size_t	list_len(t_token *head)
 t_token	**list_to_arra(t_token *head)
 {
 	t_token	**array;
-	t_token	*temp;
 	size_t	i;
 
-	temp = head;
 	array = malloc(sizeof(t_token *) * (list_len(head) + 1));
 	if (!array)
 	{

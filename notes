@@ -1,0 +1,6 @@
+cat <											empty redir
+cat out |										empty pipe
+cat out &&										empty logical and
+cat out ||										empty logical or
+< out											no command
+(touch out && < in cat > out && cat out			unclosed parenthesis

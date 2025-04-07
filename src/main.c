@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 19:06:03 by walter            #+#    #+#             */
-/*   Updated: 2025/04/04 20:22:02 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/07 03:09:12 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,8 @@ int	main(void)
 		return (1);
 	tokens = lexer(current);
 	if (!tokens)
-	{
-		free(line);
-		return (1);
-	}
-//	print_tokens(tokens);
-//	free(line);
-//	free_tokens(tokens);
+		return (free(line), 1);
+	if (has_error(tokens))
+		return (free_tokens(tokens), free(line), 1);
 	return (0);
 }

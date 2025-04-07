@@ -6,53 +6,74 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 17:02:00 by walter            #+#    #+#             */
-/*   Updated: 2025/04/05 17:31:18 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/07 02:32:15 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_ast_node	*new_ast_node(int type;)
-{
-	t_ast_node	*new;
-
-	new = malloc(sizeof(t_ast_node));
-	if (!new)
-		return (NULL);
-	new->left = NULL;
-	new->right = NULL;
-	new->visited = 0;
-	new->type = type;
-	new->args = NULL;
-	new->redirect = NULL;
-	return (new);
-}
-
 int	find_lowest_right(t_token **tokens, int index)
 {
+	int	paren;
 	int	lowest;
-
-	lowest = tokens[index]->precedence
-	while (tokens[++index])
-		if (tokens[index]->precedence < lowest)
+	
+	paren = 0;
+	lowest = tokens[index]
+	while (1)
+	{
+		if (!tokens[index + 1])
+			return (lowest);
+		if (tokens[index + 1]->type == CLOSE_PAREN && paren = 0)
+			return (lowest);
+		if (tokens[index]->precedence < tokens[lowest]->precedence)
 			lowest = tokens[index]->precedence;
-	return (tokens[lowest]);
+		if (tokens[index]->type == OPEN_PAREN)
+			paren++;
+		if (tokens[index]->type == CLOSE_PAREN)
+			paren--;
+		index++;
+	}
 }
 
-t_ast_node	*init_parsing(t_token **tokens)
+t_ast_node	*parse_right(t_token **tokens, int i, int *error)
 {
-	int lowest;
+	i = find_lowest_right(tokens, i);
+	if (i == -1)
+		return (NULL);
+	if (tokens[i]->type == OR || tokens[i]->type == AND)
+		return (logic_creator(tokens, i, error));
+	else if (tokens[i]->type == OPEN_PAREN || tokens[i]->type == CLOSE_PAREN)
+		return (NULL);
+	else if (tokens[
+}
 
-	lowest = find_lowest_light(tokens, 0);
-	if (lowest->precedence = 2)
-		return (cmd_creator(lowest_precedence));
-	else
+int	find_lowest_left(t_token **tokens, int index)
+{
+	
+}
+
+t_ast_node	*parse_left(t_token **tokens, int index, int *error)
+{
+	i = find_lowest_left(tokens, i);
+	if (i == -1)
 		return (NULL);
 }
 
 t_ast_node	*parser(t_token **tokens)
 {
 	t_ast_node	*head;
+	int			index;
+	int			error;
 
-	head = init_parsing(tokens);
+	index = 0;
+	error = 0;
+	head = parse_right(tokens, index, &error);
+	if (!head)
+		return (NULL);
+	if (error = 1)
+	{
+		free_ast(head);
+		return (NULL);
+	}
+	return (head);
 }

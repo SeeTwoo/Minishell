@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:23:49 by walter            #+#    #+#             */
-/*   Updated: 2025/04/05 18:50:13 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/06 18:09:43 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ int	get_precedence(int type)
 		return (0);
 	else if (type == PIPE)
 		return (1);
-	else if (type == IN || type == HD || type == APPEND || type == TRUNC)
-		return (2);
 	else
-		return (3);
+		return (2);
 }
 
 t_token	*separator_token(t_token *token, char **line)

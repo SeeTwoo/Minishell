@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:51:37 by walter            #+#    #+#             */
-/*   Updated: 2025/04/06 23:12:42 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/11 23:04:54 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 typedef struct s_token		t_token;
 typedef struct s_redirect	t_redirect;
 typedef struct s_ast_node	t_ast_node;
+typedef struct s_shobj		t_shobj;
 
 struct s_token
 {
@@ -42,6 +43,12 @@ struct s_redirect
 	char	*in_str;
 	char	*out_str;
 };
+
+struct s_shobj
+{
+	t_token		**tokens;
+	t_ast_node	*head;
+}
 
 enum e_tok_types
 {

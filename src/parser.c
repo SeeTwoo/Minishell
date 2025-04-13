@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 17:02:00 by walter            #+#    #+#             */
-/*   Updated: 2025/04/07 03:02:18 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/12 10:26:17 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ t_ast_node	*parse_right(t_token **tokens, int i)
 	if (i == -1)
 		return (NULL);
 	if (tokens[i]->type == OR || tokens[i]->type == AND)
-		return (logic_creator(tokens, i, error));
-	else if (tokens[i]->type == OPEN_PAREN || tokens[i]->type == CLOSE_PAREN)
-		return (NULL);
-	else if (tokens[
+		return (logic_creator(tokens, i));
+	else if (tokens[i]->type == PIPE)
+		return (pipe_creator(tokens, i));
+	else
+		return (cmd_creator(tokens, i));
 }
 
 int	find_lowest_left(t_token **tokens, int index)
@@ -57,6 +58,12 @@ t_ast_node	*parse_left(t_token **tokens, int index)
 	i = find_lowest_left(tokens, i);
 	if (i == -1)
 		return (NULL);
+	if (tokens[i]->type == OR || tokens[i]->type == AND)
+		return (logic_creator(tokens, i));
+	else if (tokens[i]->type == PIPE)
+		return (pipe_creator(tokens, i));
+	else
+		return (cmd_creator(tokens, i));
 }
 
 t_ast_node	*parser(t_token **tokens)

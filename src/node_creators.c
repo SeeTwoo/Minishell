@@ -6,13 +6,13 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 17:31:36 by walter            #+#    #+#             */
-/*   Updated: 2025/04/07 02:32:02 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/12 10:19:09 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_ast_node	*cmd_creator(t_token **tokens, int index, int *error)
+t_ast_node	*cmd_creator(t_token **tokens, int index)
 {
 	t_ast_node	*cmd;
 
@@ -29,7 +29,7 @@ t_ast_node	*cmd_creator(t_token **tokens, int index, int *error)
 	return (cmd);
 }
 
-t_ast_node	pipe_creator(t_token **tokens, int index, int *error)
+t_ast_node	pipe_creator(t_token **tokens, int index)
 {
 	t_ast_node	*pipe;
 
@@ -46,7 +46,7 @@ t_ast_node	pipe_creator(t_token **tokens, int index, int *error)
 	return (pipe);
 }
 
-t_ast_node	logic_creator(t_token **tokens, int index, int *error)
+t_ast_node	logic_creator(t_token **tokens, int index)
 {
 	t_ast_node	*logic;
 

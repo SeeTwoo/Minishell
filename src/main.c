@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 19:06:03 by walter            #+#    #+#             */
-/*   Updated: 2025/04/07 03:09:12 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/12 10:09:21 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_token	*free_tokens(t_token *tokens)
 
 int	main(void)
 {
-	t_token	**tokens;
+	t_shobj	*obj;
 	char	*line;
 	char	*current;
 
@@ -50,10 +50,13 @@ int	main(void)
 	current = line;
 	if (!line)
 		return (1);
-	tokens = lexer(current);
-	if (!tokens)
+	obj->tokens = lexer(current);
+	if (!obj->tokens)
 		return (free(line), 1);
-	if (has_error(tokens))
-		return (free_tokens(tokens), free(line), 1);
+	obj->head = parser(obj->tokens);
+	if (!obj->head)
+		return (1);
+/*	if (has_error(tokens))
+		return (free_tokens(tokens), free(line), 1);*/
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 17:02:00 by walter            #+#    #+#             */
-/*   Updated: 2025/04/12 10:26:17 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/14 10:31:41 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,15 @@
 
 int	find_lowest_right(t_token **tokens, int index)
 {
-	int	paren;
 	int	lowest;
 	
-	paren = 0;
-	lowest = tokens[index]
+	lowest = index
 	while (1)
 	{
-		if (!tokens[index + 1])
-			return (lowest);
-		if (tokens[index + 1]->type == CLOSE_PAREN && paren = 0)
-			return (lowest);
 		if (tokens[index]->precedence < tokens[lowest]->precedence)
 			lowest = tokens[index]->precedence;
-		if (tokens[index]->type == OPEN_PAREN)
-			paren++;
-		if (tokens[index]->type == CLOSE_PAREN)
-			paren--;
+		if (!tokens[index + 1])
+			return (lowest);
 		index++;
 	}
 }
@@ -50,7 +42,17 @@ t_ast_node	*parse_right(t_token **tokens, int i)
 
 int	find_lowest_left(t_token **tokens, int index)
 {
-	
+	int	lowest;
+
+	lowest = index;
+	while (1)
+	{
+		if (tokens[index]->precedence < tokens[lowest]->precedence)
+			lowest = tokens[index]->precedence;
+		if (index = 0)
+			return (lowest);
+		index--;
+	}
 }
 
 t_ast_node	*parse_left(t_token **tokens, int index)
@@ -64,22 +66,4 @@ t_ast_node	*parse_left(t_token **tokens, int index)
 		return (pipe_creator(tokens, i));
 	else
 		return (cmd_creator(tokens, i));
-}
-
-t_ast_node	*parser(t_token **tokens)
-{
-	t_ast_node	*head;
-	int			index;
-
-	index = 0;
-	error = 0;
-	head = parse_right(tokens, index);
-	if (!head)
-		return (NULL);
-	if (error = 1)
-	{
-		free_ast(head);
-		return (NULL);
-	}
-	return (head);
 }

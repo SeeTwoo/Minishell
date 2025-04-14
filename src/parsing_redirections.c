@@ -6,25 +6,32 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 19:13:01 by walter            #+#    #+#             */
-/*   Updated: 2025/04/14 10:35:23 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/14 11:30:03 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	redir_init(t_redirect **redir)
+int	has_redirect(t_token **tokens, int index)
 {
-	*redir = malloc(lizeof(t_redirect));
-	if (!(*redir))
+	(void)tokens;
+	(void)index;
+	return (0);
+}
+
+int	redir_init(t_redirect *redir)
+{
+	redir = malloc(sizeof(t_redirect));
+	if (!redir)
 		return (0);
-	(*redir)->in_type = -1;
-	(*redir)->out_type = -1;
-	(*redir)->in_str = NULL;
-	(*redir)->out_str = NULL;
+	redir->in_type = -1;
+	redir->out_type = -1;
+	redir->in_str = NULL;
+	redir->out_str = NULL;
 	return (1);
 }
 
-int	redir_filling(t_redirect **redir, t_token, int index)
+void	redir_filling(t_redirect *redir, t_token **tokens, int index)
 {
 	int	i;
 
@@ -49,12 +56,12 @@ int	redir_filling(t_redirect **redir, t_token, int index)
 t_redirect	*get_redirect(t_token **tokens, int index)
 {
 	t_redirect	*redir;
-	int			i;
 
+	redir = NULL;
 	if (!has_redirect(tokens, index))
 		return (NULL);
-	if (!redir_init(&redir))
+	if (!redir_init(redir))
 		return (NULL);
-	redir_filling(&redir, tokens, index);
+	redir_filling(redir, tokens, index);
 	return (redir);
 }

@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:51:37 by walter            #+#    #+#             */
-/*   Updated: 2025/04/11 23:04:54 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/14 10:41:27 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ struct s_shobj
 {
 	t_token		**tokens;
 	t_ast_node	*head;
-}
+};
 
 enum e_tok_types
 {

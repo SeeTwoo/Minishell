@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:49:32 by walter            #+#    #+#             */
-/*   Updated: 2025/04/04 20:23:36 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/14 10:43:56 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ char	*words(char **line);
 char	*separators(char **line, char c);
 char	*parenthesis(char **line, char c);
 int		hash_string(char const *s);
+
+t_ast_node	*parse_right(t_token **tokens, int index);
 
 #endif

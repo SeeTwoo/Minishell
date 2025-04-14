@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 17:31:36 by walter            #+#    #+#             */
-/*   Updated: 2025/04/14 14:31:19 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/14 15:01:43 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_ast_node	*pipe_creator(t_token **tokens, int index)
 	t_ast_node	*pipe;
 
 	pipe = malloc(sizeof(t_ast_node));
+	printf("malloc'd\n");
 	if (!pipe)
 		return (NULL);
 	pipe->args = NULL;

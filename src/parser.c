@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 17:02:00 by walter            #+#    #+#             */
-/*   Updated: 2025/04/14 11:38:17 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/14 14:58:10 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	find_lowest_right(t_token **tokens, int index)
 	lowest = index;
 	while (tokens[index])
 	{
-		printf("index is %d\n", index);
 		if (tokens[index]->precedence < tokens[lowest]->precedence)
 			lowest = tokens[index]->precedence;
 		index++;

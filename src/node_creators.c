@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 17:31:36 by walter            #+#    #+#             */
-/*   Updated: 2025/04/14 10:51:24 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/14 14:31:19 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_ast_node	*cmd_creator(t_token **tokens, int index)
 	cmd = malloc(sizeof(t_ast_node));
 	if (!cmd)
 		return (NULL);
+	cmd->args = NULL;
 	cmd->left = NULL;
 	cmd->right = NULL;
 	cmd->visited = 0;
@@ -34,6 +35,7 @@ t_ast_node	*pipe_creator(t_token **tokens, int index)
 	pipe = malloc(sizeof(t_ast_node));
 	if (!pipe)
 		return (NULL);
+	pipe->args = NULL;
 	pipe->visited = 0;
 	pipe->type = PIPE;
 	pipe->redirect = NULL;
@@ -49,6 +51,7 @@ t_ast_node	*logic_creator(t_token **tokens, int index)
 	logic = malloc(sizeof(t_ast_node));
 	if (!logic)
 		return (NULL);
+	logic->args = NULL;
 	logic->visited = 0;
 	logic->type = tokens[index]->type;
 	logic->redirect = NULL;

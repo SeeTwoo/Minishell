@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 19:13:01 by walter            #+#    #+#             */
-/*   Updated: 2025/04/06 19:14:20 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/14 10:35:23 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,5 @@ t_redirect	*get_redirect(t_token **tokens, int index)
 	if (!redir_init(&redir))
 		return (NULL);
 	redir_filling(&redir, tokens, index);
-/*	if (redir_has_error());*/
 	return (redir);
 }

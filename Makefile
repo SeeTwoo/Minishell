@@ -9,6 +9,9 @@ SRC_DIR = src
 SRC_FILES =	lexemes_creators.c \
 			lexer.c \
 			main.c \
+			node_creators.c \
+			parser.c \
+			parsing_redirections.c \
 			token_creators.c \
 			words.c
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))

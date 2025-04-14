@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:18:22 by walter            #+#    #+#             */
-/*   Updated: 2025/04/04 23:31:14 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/14 11:41:00 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ size_t	list_len(t_token *head)
 	return (i);
 }
 
-t_token	**list_to_arra(t_token *head)
+t_token	**list_to_array(t_token *head)
 {
 	t_token	**array;
 	size_t	i;
@@ -50,6 +50,7 @@ t_token	**list_to_arra(t_token *head)
 		array[i]->next = NULL;
 		i++;
 	}
+	array[i] = NULL;
 	return (array);
 }
 
@@ -101,5 +102,5 @@ t_token	**lexer(char *line)
 			return (NULL);
 		}
 	}
-	return (list_to_arra(head));
+	return (list_to_array(head));
 }

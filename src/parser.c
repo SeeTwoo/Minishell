@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 17:02:00 by walter            #+#    #+#             */
-/*   Updated: 2025/04/14 10:58:30 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/14 11:38:17 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ int	find_lowest_right(t_token **tokens, int index)
 	int	lowest;
 	
 	lowest = index;
-	while (1)
+	while (tokens[index])
 	{
+		printf("index is %d\n", index);
 		if (tokens[index]->precedence < tokens[lowest]->precedence)
 			lowest = tokens[index]->precedence;
-		if (!tokens[index + 1])
-			return (lowest);
 		index++;
 	}
+	return (lowest);
 }
 
 t_ast_node	*parse_right(t_token **tokens, int index)

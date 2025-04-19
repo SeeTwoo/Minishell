@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 17:02:00 by walter            #+#    #+#             */
-/*   Updated: 2025/04/14 14:58:10 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/19 12:34:08 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ int	find_lowest_right(t_token **tokens, int index)
 {
 	int	lowest;
 	
+	if (!tokens[index + 1])
+		return (-1);
+	index++;
 	lowest = index;
 	while (tokens[index])
 	{

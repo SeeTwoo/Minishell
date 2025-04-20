@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:49:32 by walter            #+#    #+#             */
-/*   Updated: 2025/04/20 12:27:35 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/20 19:15:05 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ t_ast_node	*parse_left(t_token **tokens, int index, int lim);
 t_ast_node	*cmd_creator(t_token **tokens, int index);
 t_ast_node	*pipe_creator(t_token **tokens, int index);
 t_ast_node	*logic_creator(t_token **tokens, int index);
+
+char	**args_creator(t_token **tok);
 
 t_redirect	*get_redirect(t_token **tokens, int index);
 

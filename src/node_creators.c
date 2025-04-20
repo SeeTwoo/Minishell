@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 17:31:36 by walter            #+#    #+#             */
-/*   Updated: 2025/04/20 18:05:31 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/20 19:11:19 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_ast_node	*cmd_creator(t_token **tokens, int index)
 	if (!cmd)
 		return (NULL);
 	printf("creating command node with [%s]\n", tokens[index]->lexeme);
-	cmd->args = NULL;
+	cmd->args = args_creator(&tokens[index]);
 	cmd->left = NULL;
 	cmd->right = NULL;
 	cmd->visited = 0;

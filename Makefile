@@ -6,7 +6,8 @@ LIB_DIR = libft
 LIB_NAME = $(LIB_DIR)/libft.a
 
 SRC_DIR = src
-SRC_FILES =	lexemes_creators.c \
+SRC_FILES =	args_creators.c \
+			lexemes_creators.c \
 			lexer.c \
 			main.c \
 			node_creators.c \

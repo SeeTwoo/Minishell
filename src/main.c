@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 19:06:03 by walter            #+#    #+#             */
-/*   Updated: 2025/04/20 12:25:09 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/20 19:45:12 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	main(void)
 	obj.head = parse_right(obj.tokens, 0, 0);
 	if (!obj.head)
 		return (1);
+	printf("\n");
 	print_ast(obj.head);
 /*	if (has_error(tokens))
 		return (free_tokens(tokens), free(line), 1);*/

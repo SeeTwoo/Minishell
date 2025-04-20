@@ -4,3 +4,9 @@ cat out &&										empty logical and
 cat out ||										empty logical or
 < out											no command
 (touch out && < in cat > out && cat out			unclosed parenthesis
+
+
+Precedence
+	&& and ||					0
+	|							1
+	<<, <, >, >>, word			2

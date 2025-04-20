@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 18:50:36 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/04/20 19:14:29 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/20 19:38:15 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	**args_creator(t_token **tok)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (tok[i]->prec == 2)
+	while (tok[i] && tok[i]->prec == 2)
 	{
 		if (is_redir(tok[i]))
 			i += 2;

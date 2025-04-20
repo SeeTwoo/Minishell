@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 12:00:29 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/04/14 14:35:57 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/20 18:31:39 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ void	print_ast(t_ast_node *head)
 		printf("append\n");
 	if (head->type == AND)
 		printf("and\n");
-	print_ast(head->right);
 	print_ast(head->left);
+	print_ast(head->right);
 }

@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:49:32 by walter            #+#    #+#             */
-/*   Updated: 2025/04/14 14:36:23 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/20 12:27:35 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ char	*separators(char **line, char c);
 char	*parenthesis(char **line, char c);
 int		hash_string(char const *s);
 
-t_ast_node	*parse_right(t_token **tokens, int index);
-t_ast_node	*parse_left(t_token **tokens, int index);
+t_ast_node	*parse_right(t_token **tokens, int index, int lim);
+t_ast_node	*parse_left(t_token **tokens, int index, int lim);
 
 t_ast_node	*cmd_creator(t_token **tokens, int index);
 t_ast_node	*pipe_creator(t_token **tokens, int index);

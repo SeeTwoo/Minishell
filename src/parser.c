@@ -6,68 +6,66 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 17:02:00 by walter            #+#    #+#             */
-/*   Updated: 2025/04/20 09:17:01 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/20 12:38:58 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	find_lowest_right(t_token **tokens, int index)
+int	find_lowest_right(t_token **tok, int i, int lim)
 {
 	int	lowest;
-	
-	if (!tokens[index + 1])
+
+	if (!tok[i])
 		return (-1);
-	index++;
-	lowest = index;
-	while (tokens[index])
+	lowest = i;
+	while (tok[i])
 	{
-		if (tokens[index]->precedence < tokens[lowest]->precedence)
-			lowest = index;
-		index++;
+		if (tok[i]->prec < tok[lowest]->prec && tok[i]->prec >= lim)
+			lowest = i;
+		i++;
 	}
 	return (lowest);
 }
 
-t_ast_node	*parse_right(t_token **tokens, int index)
+t_ast_node	*parse_right(t_token **tok, int i, int lim)
 {
-	index = find_lowest_right(tokens, index);
-	if (index == -1)
+	i = find_lowest_right(tok, i, lim);
+	if (i == -1)
 		return (NULL);
-	if (tokens[index]->type == OR || tokens[index]->type == AND)
-		return (logic_creator(tokens, index));
-	else if (tokens[index]->type == PIPE)
-		return (pipe_creator(tokens, index));
+	if (tok[i]->type == OR || tok[i]->type == AND)
+		return (logic_creator(tok, i));
+	else if (tok[i]->type == PIPE)
+		return (pipe_creator(tok, i));
 	else
-		return (cmd_creator(tokens, index));
+		return (cmd_creator(tok, i));
 }
 
-int	find_lowest_left(t_token **tokens, int index)
+int	find_lowest_left(t_token **tok, int i, int lim)
 {
 	int	lowest;
 
-	if (index == 0)
+	if (i == 0)
 		return (-1);
-	index--;
-	lowest = index;
-	while (index >= 0)
+	lowest = i;
+	while (i >= 0)
 	{
-		if (tokens[index]->precedence <= tokens[lowest]->precedence)
-			lowest = index;
-		index--;
+		if (tok[i]->prec <= tok[lowest]->prec && tok[i]->prec > lim)
+			lowest = i;
+		i--;
 	}
 	return (lowest);
 }
 
-t_ast_node	*parse_left(t_token **tokens, int index)
+t_ast_node	*parse_left(t_token **tok, int i, int lim)
 {
-	index = find_lowest_left(tokens, index);
-	if (index == -1)
+	i = find_lowest_left(tok, i, lim);
+	if (i == -1)
 		return (NULL);
-	if (tokens[index]->type == OR || tokens[index]->type == AND)
-		return (logic_creator(tokens, index));
-	else if (tokens[index]->type == PIPE)
-		return (pipe_creator(tokens, index));
+	if (tok[i]->type == OR || tok[i]->type == AND)
+		return (logic_creator(tok, i));
+	else if (tok[i]->type == PIPE)
+		return (pipe_creator(tok, i));
 	else
-		return (cmd_creator(tokens, index));
+		return (cmd_creator(tok, i));
 }

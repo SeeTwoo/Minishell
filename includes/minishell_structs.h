@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:51:37 by walter            #+#    #+#             */
-/*   Updated: 2025/04/14 10:41:27 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/20 12:18:17 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ struct s_token
 {
 	char	*lexeme;
 	int		type;
-	int		precedence;
+	int		prec;
 	t_token	*next;
 };
 

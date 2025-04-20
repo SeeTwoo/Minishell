@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 19:13:01 by walter            #+#    #+#             */
-/*   Updated: 2025/04/14 11:30:03 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/20 12:28:10 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	redir_filling(t_redirect *redir, t_token **tokens, int index)
 	int	i;
 
 	i = index;
-	while (i > 0 && (tokens[i - 1]->precedence == 2))
+	while (i > 0 && (tokens[i - 1]->prec == 2))
 		i--;
-	while (tokens[i]->precedence == 2)
+	while (tokens[i]->prec == 2)
 	{
 		if (tokens[i]->type == IN || tokens[i]->type == HD)
 		{

@@ -15,11 +15,26 @@
 int	skip_paren(t_token **tok)
 {
 	int	i;
+	int	paren;
 
 	i = 0;
-	while (tok[i]->type != CLOSE_PAREN)
+	paren = 0;
+	while (tok[i])
+	{
+		if (tok[i]->type == CLOSE_PAREN && paren == 0)
+			return (i + 1);
+		if (tok[i]->type == OPEN_PAREN)
+			paren++;
+		if (tok[i]->type == CLOSE_PAREN)
+			paren--;
 		i++;
-	return (i + 1);
+	}
+	return (i);
+}
+
+void	paren_right(t_token **tok, int *i, int lim)
+{
+	if (
 }
 
 int	find_lowest_right(t_token **tok, int i, int lim)
@@ -33,8 +48,8 @@ int	find_lowest_right(t_token **tok, int i, int lim)
 	{
 		if (tok[i]->prec < tok[lowest]->prec && tok[i]->prec >= lim)
 			lowest = i;
-		if (tok[i]->type == OPEN_PAREN && !tok(i + skip_paren(&tok[i]))
-			return (find_lowest_right(tok, i + 1, lim));
+		if (tok[i]->type == OPEN_PAREN)
+			paren_right(tok, &i, lim);
 		else
 			i++;
 	}

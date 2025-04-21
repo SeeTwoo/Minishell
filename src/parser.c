@@ -12,6 +12,16 @@
 
 #include "minishell.h"
 
+int	skip_paren(t_token **tok)
+{
+	int	i;
+
+	i = 0;
+	while (tok[i]->type != CLOSE_PAREN)
+		i++;
+	return (i + 1);
+}
+
 int	find_lowest_right(t_token **tok, int i, int lim)
 {
 	int	lowest;
@@ -19,12 +29,12 @@ int	find_lowest_right(t_token **tok, int i, int lim)
 	if (!tok[i])
 		return (-1);
 	lowest = i;
-	while (tok[i] && tok[i]->prec >= lim)
+	while (tok[i] && tok[i]->prec >= lim && tok[i]->type != CLOSE_PAREN)
 	{
 		if (tok[i]->prec < tok[lowest]->prec && tok[i]->prec >= lim)
 			lowest = i;
-		if (tok[i]->type == OPEN_PAREN)
-			i += skip_paren(&tok[i]);
+		if (tok[i]->type == OPEN_PAREN && !tok(i + skip_paren(&tok[i]))
+			return (find_lowest_right(tok, i + 1, lim));
 		else
 			i++;
 	}

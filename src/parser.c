@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 17:02:00 by walter            #+#    #+#             */
-/*   Updated: 2025/04/20 18:19:39 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:14:01 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int	find_lowest_right(t_token **tok, int i, int lim)
 	{
 		if (tok[i]->prec < tok[lowest]->prec && tok[i]->prec >= lim)
 			lowest = i;
-		i++;
+		if (tok[i]->type == OPEN_PAREN)
+			i += skip_paren(&tok[i]);
+		else
+			i++;
 	}
 	return (lowest);
 }

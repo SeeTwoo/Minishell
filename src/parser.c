@@ -42,7 +42,7 @@ t_ast_node	*parse_right(t_token **tok, int i, int lim)
 		return (cmd_creator(tok, i));
 }*/
 
-int	find_lowest_left(t_token **tok, int i, int lim)
+/*int	find_lowest_left(t_token **tok, int i, int lim)
 {
 	int	lowest;
 
@@ -70,3 +70,4 @@ t_ast_node	*parse_left(t_token **tok, int i, int lim)
 	else
 		return (cmd_creator(tok, i));
 }
+*/

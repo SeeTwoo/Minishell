@@ -8,6 +8,7 @@ LIB_NAME = $(LIB_DIR)/libft.a
 SRC_DIR = src
 SRC_FILES =	args_creators.c \
 			is_token_type.c \
+			left_parser.c \
 			lexemes_creators.c \
 			lexer.c \
 			main.c \

@@ -16,6 +16,7 @@ int	skip_paren_left(t_token **tok, int i)
 {
 	int	paren;
 
+	paren = 0;
 	while (1)
 	{
 		if (is_open_paren(tok[i]->type) && paren == 0)
@@ -38,7 +39,7 @@ int	find_lowest_left(t_token **tok, int i, int lim)
 	{
 		if (is_close_paren(tok[i]->type))
 		{
-			till_open = skip_paren_left(tok, i);
+			till_open = skip_paren_left(tok, i - 1);
 			if (i - till_open == 0)
 				return (find_lowest_left(tok, i - till_open + 1, lim));
 			else

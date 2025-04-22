@@ -6,55 +6,23 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 17:02:00 by walter            #+#    #+#             */
-/*   Updated: 2025/04/21 20:29:51 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/22 11:31:46 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	skip_paren(t_token **tok)
-{
-	int	i;
-	int	paren;
-
-	i = 0;
-	paren = 0;
-	while (tok[i])
-	{
-		if (tok[i]->type == CLOSE_PAREN && paren == 0)
-			return (i + 1);
-		if (tok[i]->type == OPEN_PAREN)
-			paren++;
-		if (tok[i]->type == CLOSE_PAREN)
-			paren--;
-		i++;
-	}
-	return (i);
-}
-
-int	paren_right(t_token **tok, int i, int lim)
-{
-	int	closing_paren;
-
-	closing_paren = skip_paren(&tok[i]);
-	if (tok[i + closing_paren])
-		return (find_lowest_right(tok, i + closing_paren, lim));
-	return (find_lowest_right(tok, i + 1, lim));
-}
-
-int	find_lowest_right(t_token **tok, int i, int lim)
+/*int	find_lowest_right(t_token **tok, int i, int lim)
 {
 	int	lowest;
 
 	if (!tok[i])
 		return (-1);
 	lowest = i;
-	while (tok[i] && tok[i]->prec >= lim && tok[i]->type != CLOSE_PAREN)
+	while (tok[i] && tok[i]->prec >= lim)
 	{
 		if (tok[i]->prec < tok[lowest]->prec && tok[i]->prec >= lim)
 			lowest = i;
-		if (tok[i]->type == OPEN_PAREN)
-			return (paren_right(tok, i, lim));
 		else
 			i++;
 	}
@@ -72,7 +40,7 @@ t_ast_node	*parse_right(t_token **tok, int i, int lim)
 		return (pipe_creator(tok, i));
 	else
 		return (cmd_creator(tok, i));
-}
+}*/
 
 int	find_lowest_left(t_token **tok, int i, int lim)
 {
@@ -83,7 +51,7 @@ int	find_lowest_left(t_token **tok, int i, int lim)
 	lowest = i;
 	while (i >= 0 && tok[i]->prec > lim)
 	{
-		if (tok[i]->prec <= tok[lowest]->prec && tok[i]->prec > lim)
+		if (tok[i]->prec <= tok[lowest]->prec)
 			lowest = i;
 		i--;
 	}

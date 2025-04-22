@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:00:10 by walter            #+#    #+#             */
-/*   Updated: 2025/04/02 18:28:54 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/22 12:47:34 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ size_t	word_len(char const *s)
 	size_t	i;
 
 	i = 0;
-	while (s[i] && !isspace(s[i]) && !strchr(SEP, s[i]))
+	while (s[i] && !isspace(s[i]) && !strchr(SEPS, s[i]))
 	{
 		if (s[i] == '\'' || s[i] == '\"')
 			i += len_till_quote(&s[i], s[i]);
@@ -75,7 +75,7 @@ char	*words(char **line)
 	if (!dest)
 		return (NULL);
 	i = 0;
-	while ((*line)[i] && !isspace((*line)[i]) && !strchr(SEP, (*line)[i]))
+	while ((*line)[i] && !isspace((*line)[i]) && !strchr(SEPS, (*line)[i]))
 		quote_cpy(dest, *line, &i);
 	dest[i] = '\0';
 	*line += i;

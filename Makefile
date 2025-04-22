@@ -7,6 +7,7 @@ LIB_NAME = $(LIB_DIR)/libft.a
 
 SRC_DIR = src
 SRC_FILES =	args_creators.c \
+			is_token_type.c \
 			lexemes_creators.c \
 			lexer.c \
 			main.c \
@@ -14,6 +15,7 @@ SRC_FILES =	args_creators.c \
 			parser.c \
 			parsing_redirections.c \
 			print_ast.c \
+			right_parser.c \
 			token_creators.c \
 			words.c
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))

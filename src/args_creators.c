@@ -6,17 +6,11 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 18:50:36 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/04/20 19:38:15 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/22 11:33:21 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	is_redir(t_token *tok)
-{
-	return (tok->type == IN || tok->type == HD
-			|| tok->type == APPEND || tok->type == TRUNC);
-}
 
 size_t	args_number(t_token **tok)
 {
@@ -27,7 +21,7 @@ size_t	args_number(t_token **tok)
 	j = 0;
 	while (tok[i] && tok[i]->prec == 2)
 	{
-		if (is_redir(tok[i]))
+		if (is_redir(tok[i]->type))
 			i += 2;
 		else
 		{
@@ -51,7 +45,7 @@ char	**args_creator(t_token **tok)
 	j = 0;
 	while (tok[i] && tok[i]->prec == 2)
 	{
-		if (is_redir(tok[i]))
+		if (is_redir(tok[i]->type))
 			i += 2;
 		else
 		{

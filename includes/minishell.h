@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:49:32 by walter            #+#    #+#             */
-/*   Updated: 2025/04/21 20:29:06 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/22 12:46:12 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 
 # ifndef SEP
 #  define SEP "<>|&"
+# endif
+
+# ifndef SEPS
+#  define SEPS "<>|&()"
 # endif
 
 t_token	*free_tokens(t_token *tokens);
@@ -53,5 +57,15 @@ char	**args_creator(t_token **tok);
 t_redirect	*get_redirect(t_token **tokens, int index);
 
 void	print_ast(t_ast_node *head);
+
+int	is_pipe(int type);
+int	is_logic(int type);
+int	is_word(int type);
+int	is_in_redir(int type);
+int	is_out_redir(int type);
+int	is_redir(int type);
+int	is_separator(int type);
+int	is_open_paren(int type);
+int	is_close_paren(int type);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:23:49 by walter            #+#    #+#             */
-/*   Updated: 2025/04/21 20:30:36 by walter           ###   ########.fr       */
+/*   Updated: 2025/04/22 12:34:36 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 int	get_precedence(int type)
 {
-	if (type == AND || type == OR)
+	if (is_logic(type))
 		return (0);
 	else if (type == PIPE)
 		return (1);
-	else if (type == WORD || type == IN || type == HD ||
-				type == APPEND || type == TRUNC)
+	else if (is_redir(type) || is_word(type))
 		return (2);
 	else if (type == OPEN_PAREN || type == CLOSE_PAREN)
 		return (3);

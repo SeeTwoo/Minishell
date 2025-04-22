@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:49:32 by walter            #+#    #+#             */
-/*   Updated: 2025/04/20 19:15:05 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/21 20:29:06 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ int		hash_string(char const *s);
 
 t_ast_node	*parse_right(t_token **tokens, int index, int lim);
 t_ast_node	*parse_left(t_token **tokens, int index, int lim);
+
+int	find_lowest_right(t_token **tok, int i, int lim);
+int	find_lowest_left(t_token **tok, int i, int lim);
 
 t_ast_node	*cmd_creator(t_token **tokens, int index);
 t_ast_node	*pipe_creator(t_token **tokens, int index);

@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 19:23:49 by walter            #+#    #+#             */
-/*   Updated: 2025/04/21 17:11:31 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/21 20:30:36 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	get_precedence(int type)
 		return (2);
 	else if (type == OPEN_PAREN || type == CLOSE_PAREN)
 		return (3);
+	return (4);
 }
 
 t_token	*separator_token(t_token *token, char **line)

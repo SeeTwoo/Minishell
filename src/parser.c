@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 17:02:00 by walter            #+#    #+#             */
-/*   Updated: 2025/04/21 17:14:01 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/21 20:29:51 by walter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,14 @@ int	skip_paren(t_token **tok)
 	return (i);
 }
 
-void	paren_right(t_token **tok, int *i, int lim)
+int	paren_right(t_token **tok, int i, int lim)
 {
-	if (
+	int	closing_paren;
+
+	closing_paren = skip_paren(&tok[i]);
+	if (tok[i + closing_paren])
+		return (find_lowest_right(tok, i + closing_paren, lim));
+	return (find_lowest_right(tok, i + 1, lim));
 }
 
 int	find_lowest_right(t_token **tok, int i, int lim)
@@ -49,7 +54,7 @@ int	find_lowest_right(t_token **tok, int i, int lim)
 		if (tok[i]->prec < tok[lowest]->prec && tok[i]->prec >= lim)
 			lowest = i;
 		if (tok[i]->type == OPEN_PAREN)
-			paren_right(tok, &i, lim);
+			return (paren_right(tok, i, lim));
 		else
 			i++;
 	}

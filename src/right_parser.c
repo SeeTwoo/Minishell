@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 08:43:18 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/04/22 12:14:36 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/22 12:55:06 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	find_lowest_right(t_token **tok, int i, int lim)
 			till_close = skip_paren(&tok[i + 1]);
 			if (!tok[i + till_close] && first != lowest)
 				return (lowest);
-			else
+			else if (!tok[i + till_close] && first == lowest)
 				return (find_lowest_right(tok, i + 1, lim));
 		}
 		if (tok[i]->prec < tok[lowest]->prec)

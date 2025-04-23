@@ -6,7 +6,7 @@
 /*   By: walter <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:18:22 by walter            #+#    #+#             */
-/*   Updated: 2025/04/14 11:41:00 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/04/23 13:35:46 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,6 @@ t_token	**lexer(char *line)
 			return (NULL);
 		}
 	}
+	wildcard(head);
 	return (list_to_array(head));
 }

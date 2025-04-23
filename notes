@@ -10,3 +10,18 @@ Precedence
 	&& and ||					0
 	|							1
 	<<, <, >, >>, word			2
+
+todo
+
+
+
+
+cat out
+
+cat , out
+
+cat *.c
+
+cat , *.c
+
+cat , file1.c , file

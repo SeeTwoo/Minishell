@@ -12,56 +12,58 @@
 
 #include "minishell.h"
 
-int	has_redirect(t_token **tokens, int index)
+int	has_redirect(t_token **tok, int i)
 {
-	(void)tokens;
-	(void)index;
+	while (tok[i] && tok[i]->prec == 2)
+	{
+		if (is_redir(tok[i]->type))
+			return (1);
+		i++;
+	}
 	return (0);
 }
 
-int	redir_init(t_redirect *redir)
+t_redirect	*redir_init(void)
 {
+	t_redirect	*redir;
+
 	redir = malloc(sizeof(t_redirect));
 	if (!redir)
-		return (0);
+		return (NULL);
 	redir->in_type = -1;
 	redir->out_type = -1;
 	redir->in_str = NULL;
 	redir->out_str = NULL;
-	return (1);
+	return (redir);
 }
 
-void	redir_filling(t_redirect *redir, t_token **tokens, int index)
+void	redir_filling(t_redirect *redir, t_token **tok, int i)
 {
-	int	i;
-
-	i = index;
-	while (i > 0 && (tokens[i - 1]->prec == 2))
-		i--;
-	while (tokens[i]->prec == 2)
+	while (tok[i] && tok[i]->prec == 2)
 	{
-		if (tokens[i]->type == IN || tokens[i]->type == HD)
+		if (is_in_redir(tok[i]->type))
 		{
-			redir->in_type = tokens[i]->type;
-			redir->in_str = ft_strdup(tokens[i + 1]->lexeme);
+			redir->in_type = tok[i]->type;
+			redir->in_str = ft_strdup(tok[i + 1]->lexeme);
 		}
-		else if (tokens[i]->type == APPEND || tokens[i]->type == TRUNC)
+		else if (is_out_redir(tok[i]->type))
 		{
-			redir->out_type = tokens[i]->type;
-			redir->out_str = ft_strdup(tokens[i + 1]->lexeme);
+			redir->out_type = tok[i]->type;
+			redir->out_str = ft_strdup(tok[i + 1]->lexeme);
 		}
+		i++;
 	}
 }
 
-t_redirect	*get_redirect(t_token **tokens, int index)
+t_redirect	*get_redirect(t_token **tok, int i)
 {
 	t_redirect	*redir;
 
-	redir = NULL;
-	if (!has_redirect(tokens, index))
+	if (!has_redirect(tok, i))
 		return (NULL);
-	if (!redir_init(redir))
+	redir = redir_init();
+	if (!redir)
 		return (NULL);
-	redir_filling(redir, tokens, index);
+	redir_filling(redir, tok, i);
 	return (redir);
 }
